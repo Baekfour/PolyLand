@@ -21,9 +21,11 @@ int main() {
     int money;
     int extend;
     int totalmoney = 0;
-    char benefit[50];
-    char TypeAge[50];
-    while (true) {  	
+    int numberofticket = 1;
+    int basicFeeType ;
+    int orderCount = 0;
+    int orderList[10][5] = {0};
+    do {  	
     	back:
         int money = 0;
         printf("**********************************************************\n");
@@ -75,6 +77,17 @@ int main() {
             }
         }  // ReaLAge 구해짐
 		 
+		 if (RealAge > 65) { // 노인
+               basicFeeType = 1;
+         } else if (RealAge < 65 && RealAge > 18) { //성인
+               basicFeeType = 2;
+          } else if (RealAge > 12 && RealAge < 19) { // 청소년
+               basicFeeType = 3;
+          }    else if (RealAge > 3 && RealAge < 13) { //어린아
+               basicFeeType = 4;
+          } else if (RealAge < 4) { // 아기
+               basicFeeType = 5;
+                }
         //  연령별 가격 책정 
         if (inputType == 1) {
             if (inputTicket == 1) {
@@ -106,32 +119,26 @@ int main() {
             // 가격책정에 할인 적용  
             switch (inputbenefit) {
                 case 1: {
-                	char benefit[50] = "*우대적용 없음"; 
                     money = price;
                     break;
                 }
                 case 2: {
-                	char benefit[50] = "*장애인 우대"; 
                     money = price * 5 / 10;
                     break;
                 }
                 case 3: {
-               	    char benefit[50] = "*국가유공자 우대"; 
                     money = price * 5 / 10;
                     break;
                 }
                 case 4: {
-             	    char benefit[50] = "*휴가장병 우대"; 
                     money = price * 5 / 10;
                     break;
                 }
                 case 5: {
-                	char benefit[50] = "*임산부 우대"; 
                     money = price * 49 / 100;
                     break;
                 }
                 case 6: {
-                	char benefit[50] = "*다둥이 행복카드 우대" ;
                     money = price * 30 / 100;
                     break;
                 }
@@ -141,6 +148,7 @@ int main() {
             if (inputTicket == 1) {
                 if (RealAge > 65) { // 노인
                     price = AllAfter4BOlderTK;
+                    
                 } else if (RealAge < 65 && RealAge > 18) { //성인
                     price = AllAfter4AdultTK;
                 } else if (RealAge > 12 && RealAge < 19) { // 청소년
@@ -166,34 +174,28 @@ int main() {
             }
             switch (inputbenefit) {
                 case 1: {
-                	char benefit[50] = "*우대적용 없음"; 
                     money = price;
                     break;
                 }
                 case 2: {
-                	char benefit[50] = "*장애인 우대"; 
                     money = price * 5 / 10;
                     break;
                 }
                 case 3: {
-                	char benefit[50] = "*국가유공자 우대"; 
                     money = price * 5 / 10;
                     break;
                 }
                 case 4: {
-                	char benefit[50] = "*우대적용 없음"; 
                     money = price;
                     printf("휴가장병 우대는 종합이용권만 할인됩니다\n");
                     break;
                 }
                 case 5: {
-                	char benefit[50] = "*우대적용 없음"; 
                     money = price;
                     printf("임산부 우대는 종합이용권만 할인됩니다\n");
                     break;
                 }
                 case 6: {
-                	char benefit[50] = "*우대적용 없음"; 
                     money = price;
                     printf("다둥이 행복카드 우대는 종합이용권만 할인됩니다\n");
                     break;
@@ -207,64 +209,103 @@ int main() {
             printf("티켓 금액은 %d원 입니다.\n\n", money);
         }
         totalmoney += money;
+    orderList[orderCount][0] = inputType;  	//이용권종류
+	orderList[orderCount][1] = inputTicket; 		//이용권 옵션 
+	orderList[orderCount][2] = basicFeeType;		//나이별 권종 
+	orderList[orderCount][3] = numberofticket; 		//몇장  
+	orderList[orderCount][4] = money; 			//가격 
+	orderList[orderCount][5] = inputbenefit;		//우대사항 
+	orderCount++ ;
+        
         printf("계속 발권 하시겠습니까?\n");
         printf("티켓 발권 : 1\n");
         printf("종료 : 2\n");
         printf("처음으로 : 3\n");
         scanf("%d", & extend);
         printf("\n");        
-         
-       /* 어른 X 가격 *우대적용 할인 없음 
-		청소년 X 가격 *장애인 우대적용 
-		어린이 X 가격 
-		베이비 X 가격 
-		노인 X 가격  */
-		if (RealAge > 65 && inputType == 1) { // 노인
-          char TypeAge[50] = "종합이용권 65세 이상";
-        } else if (RealAge > 65 && inputType == 2) { // 노인
-     		 char TypeAge[50] = "파크이용권 65세 이상";
-        } else if (RealAge < 65 && RealAge > 18 && inputType == 1) { //성인
-            char TypeAge[50] = "종합이용권 어른";
-        } else if (RealAge < 65 && RealAge > 18 && inputType == 2) { //성인
-            char TypeAge[50] = "파크이용권 어른";
-        }  else if (RealAge > 12 && RealAge < 19 && inputType == 1) { // 청소년
-            char TypeAge[50] = "종합이용권 청소년";
-        } else if (RealAge > 12 && RealAge < 19 && inputType == 2) { // 청소년
-            char TypeAge[50] = "파크이용권 청소년";
-        } else if (RealAge > 3 && RealAge < 13 && inputType == 1) { //어린이 
-            char TypeAge[50] = "종합이용권 어린이";
-        }else if (RealAge > 3 && RealAge < 13 && inputType == 2) { //어린이 
-            char TypeAge[50] = "파크이용권 어린이";
-        } else if (RealAge < 4 && inputType == 1){
-            char TypeAge[50] = "종합이용권 베이비";
-		}else if (RealAge < 4 && inputType == 2){
-            char TypeAge[50] = "파크이용권 베이비";
+        
+        
+        
+       
+    } while(extend == 1);
+    
+    printf("\n\n******************** 결제 정보 ********************\n");
+    printf("이용권 종류\t이용권 옵션\t나이별 권종\t몇장\t가격\t우대사항\n");
+    for (int i = 0; i < orderCount; i++) {
+    	switch (orderList[i][0]) {
+    		case 1 : {
+    			printf("종합이용권\t");
+				break;
+			}
+			case 2 : {
+    			printf("파크이용권\t");
+				break;
+			}
 		}
-		if(inputType == 1 || inputType ==2 && inputbenefit == 1){
-			char benefit[50] = "*장애인 우대"; 
-		} else if(inputType == 1 || inputType ==2 && inputbenefit == 2){
-			char benefit[50] = "*국가유공자 우대"; 
-		} else if(inputType == 1 && inputbenefit == 3){
-			char benefit[50] = "*휴가장병 우대"; 
-		} else if(inputType == 1 && inputbenefit == 4){
-			char benefit[50] = "*임산부 우대"; 
-		} else if(inputType == 1 && inputbenefit == 5){
-			char benefit[50] = "*다둥이 행복카드"; 
-		} else {
-			char benefit[50] = "*우대적용 없음";
+		switch (orderList[i][1]) {
+    		case 1 : {
+    			printf("1Day\t");
+				break;
+			}
+			case 2 : {
+    			printf("After4\t");
+				break;
+			}
 		}
-		
-        if (extend == 1) {
-		} 
-		else if (extend == 2) {
-		
-			printf("=============폴리랜드==============\n");
-			printf("%s\t X 개수\t %d\t\n", TypeAge, money); 			
-            printf("총 결제금액은 %d원 입니다.", totalmoney );
-            break;
-        } else if (extend == 3) {
-        	totalmoney = 0;
-            goto back;
-        }
+		switch (orderList[i][2]) {
+    		case 1 : {
+    			printf("노인\t");
+				break;
+			}
+			case 2 : {
+    			printf("성인\t");
+				break;
+			}
+			case 3 : {
+    			printf("청소년\t");
+				break;
+			}
+			case 4 : {
+    			printf("어린이\t");
+				break;
+			}
+			case 5 : {
+    			printf("베이비\t");
+				break;
+			}
+			
+		}
+		orderList[orderCount][3] = 1;
+		orderList[orderCount][4] = money;
+		if(orderList[i][5] == 2) {
+			printf("*장애인 우대\n");
+			printf("%d", inputbenefit);
+		}
+		else if(orderList[i][5] == 3) {
+			printf("*국가유공자 우대\n");
+			printf("%d", inputbenefit);
+		}
+		else if(inputType == 1 && orderList[i][5] == 4) {
+			printf("*휴가장병 우대\n");
+			printf("%d", inputbenefit);
+		}
+		else if(inputType == 1 && orderList[i][5] == 5) {
+			printf("*임산부 우대\n");
+			printf("%d", inputbenefit);
+		}
+		else if(inputType == 1 && orderList[i][5] == 6) {
+			printf("*다둥이 행복카드 우대\n");
+			printf("%d", inputbenefit);
+		}
+		else { 
+			printf("*우대사항 없음\n");
+			printf("%d", inputbenefit);
+		}
     }
-}
+    printf("\n-------------------------------------------------------\n");
+    printf("결제 금액\t\t\t\t%d원\n\n", totalmoney);
+    
+    
+} 
+
+ 
