@@ -2,26 +2,17 @@
 #include <stdio.h>
 
 int main() {
-    const int AllDayAdultTK = 62000;
-    const int ParkDayAdultTK = 59000;
-    const int AllDayTeenTK = 54000;
-    const int ParkDayTeenTK = 52000;
-    const int AllDayChildTK = 47000;
-    const int ParkDayChildTK = 46000;
-    const int AllDayBabyTK = 15000;
-    const int ParkDayBabyTK = 15000;
-    const int AllDayOlderTK = 15000;
-    const int ParkDayOlderTK = 15000;
-    const int AllAfter4AdultTK = 50000;
-    const int ParkAfter4AdultTK = 47000;
-    const int AllAfter4TeenTK = 43000;
-    const int ParkAfter4TeenTK = 41000;
-    const int AllAfter4ChildTK = 36000;
-    const int ParkAfter4ChildTK = 35000;
-    const int AllAfter4BabyTK = 15000;
-    const int ParkAfter4BabyTK = 15000;
-    const int AllAfter4BOlderTK = 15000;
-    const int ParkAfter4OlderTK = 15000;
+    const int AllDayAdultTK = 62000;		const int ParkDayAdultTK = 59000; 
+    const int AllDayTeenTK = 54000;	    	const int ParkDayTeenTK = 52000;
+    const int AllDayChildTK = 47000;		const int ParkDayChildTK = 46000;
+    const int AllDayBabyTK = 15000;			const int ParkDayBabyTK = 15000;
+    const int AllDayOlderTK = 15000;		const int ParkDayOlderTK = 15000;
+    const int AllAfter4AdultTK = 50000;		const int ParkAfter4AdultTK = 47000;
+    const int AllAfter4TeenTK = 43000;		const int ParkAfter4TeenTK = 41000;
+    const int AllAfter4ChildTK = 36000;		const int ParkAfter4ChildTK = 35000; 
+    const int AllAfter4BabyTK = 15000;		const int ParkAfter4BabyTK = 15000;  
+    const int AllAfter4BOlderTK = 15000;	const int ParkAfter4OlderTK = 15000;
+    
     int inputType;
     int inputTicket;
     int inputRegisterNum;
