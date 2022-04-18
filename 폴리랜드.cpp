@@ -11,8 +11,7 @@ int main() {
     const int AllAfter4TeenTK = 43000;		const int ParkAfter4TeenTK = 41000;
     const int AllAfter4ChildTK = 36000;		const int ParkAfter4ChildTK = 35000; 
     const int AllAfter4BabyTK = 15000;		const int ParkAfter4BabyTK = 15000;  
-    const int AllAfter4BOlderTK = 15000;	const int ParkAfter4OlderTK = 15000;
-    
+    const int AllAfter4BOlderTK = 15000;	const int ParkAfter4OlderTK = 15000;   
     int inputType;
     int inputTicket;
     int inputRegisterNum;
